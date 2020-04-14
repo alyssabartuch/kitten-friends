@@ -1,0 +1,20 @@
+#heading {
+    font-family: 'Pacifico', cursive;
+    font-weight: 400;
+    font-size: 5.5em;
+    margin: 0.75rem auto;
+    margin-bottom: 1.25rem;
+    color: #cdecff;
+    text-shadow: 2px 2px grey ;
+  }
+  
+  #search-box {
+    margin: 1rem auto;
+    background: #e8fcf9;
+  }
+  
+  #card-list {
+    border-top: 1px solid grey;
+    margin: auto 2rem;
+    padding-top: 0.75rem;
+  }
