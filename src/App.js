@@ -38,7 +38,6 @@ class App extends Component {
                 <SearchBox searchChange={this.onSearchChange} />
                 <CardList kittens={filteredKittens} />
             </div>
-            
         );
     }  
 }
