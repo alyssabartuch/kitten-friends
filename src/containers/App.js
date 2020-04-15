@@ -17,7 +17,10 @@ class App extends Component {
     }
 
     componentDidMount() {
-        fetch('https://jsonplaceholder.typicode.com/users')
+        let proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+        let targetUrl = 'https://jsonplaceholder.typicode.com/users';
+
+        fetch(proxyUrl + targetUrl)
             .then(response => response.json())
             .then(users => this.setState({ kittens: users, isLoading: false }));
         // console.log('component mounted');
@@ -34,9 +37,24 @@ class App extends Component {
             return kitten.name.toLowerCase().includes(searchField.toLowerCase());
         });
 
-        return (isLoading) ?
-        <h1 className="tc">Loading...</h1> : (
-            <div className="tc">
+        // return (isLoading) ?
+        // <h1 className="tc">Loading...</h1> : (
+        //     <div className="tc">
+        //         <h1 id="heading">Kitten Friends</h1>
+        //         <SearchBox searchChange={this.onSearchChange} />
+        //         <Scroll>
+        //             <ErrorBoudry>
+        //                 <CardList kittens={filteredKittens} />
+        //             </ErrorBoudry>
+        //         </Scroll>
+        //     </div>
+        // );
+
+        if (isLoading) { 
+            return <h1 className="tc">Loading...</h1> 
+        } else {
+            return (
+                <div className="tc">
                 <h1 id="heading">Kitten Friends</h1>
                 <SearchBox searchChange={this.onSearchChange} />
                 <Scroll>
@@ -45,7 +63,8 @@ class App extends Component {
                     </ErrorBoudry>
                 </Scroll>
             </div>
-        );
+            )
+        }
     }  
 }
 
