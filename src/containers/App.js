@@ -19,7 +19,11 @@ class App extends Component {
     componentDidMount() {
         fetch('https://jsonplaceholder.typicode.com/users')
             .then(response => response.json())
-            .then(users => this.setState({ kittens: users, isLoading: false }));
+            .catch(console.log)
+
+            .then(users => this.setState({ kittens: users, isLoading: false })
+            
+            );
         // console.log('component mounted');
     }
 
