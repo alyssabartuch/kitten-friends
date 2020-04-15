@@ -33,9 +33,7 @@ class App extends Component {
     render() {
         // console.log('render');
         const { kittens, searchField, isLoading } = this.state;
-        const filteredKittens = kittens.filter(kitten => {
-            return kitten.name.toLowerCase().includes(searchField.toLowerCase());
-        });
+        
 
         // return (isLoading) ?
         // <h1 className="tc">Loading...</h1> : (
@@ -50,9 +48,16 @@ class App extends Component {
         //     </div>
         // );
 
-        if (isLoading) { 
+        if (!kittens.length || isLoading) { 
+            console.log(kittens);
+            
             return <h1 className="tc">Loading...</h1> 
         } else {
+            console.log("show");
+            const filteredKittens = kittens.filter(kitten => {
+                return kitten.name.toLowerCase().includes(searchField.toLowerCase());
+            });
+
             return (
                 <div className="tc">
                 <h1 id="heading">Kitten Friends</h1>
