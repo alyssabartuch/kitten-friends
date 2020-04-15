@@ -18,15 +18,8 @@ class App extends Component {
 
     componentDidMount() {
         fetch('https://jsonplaceholder.typicode.com/users')
-            .then(response => { 
-                return response.json() })
-            .then(users => { 
-                // console.log(users)
-
-                return this.setState({ kittens: users, isLoading: false }
-                
-                    ) 
-            });
+            .then(response => response.json())
+            .then(users => this.setState({ kittens: users, isLoading: false }));
         // console.log('component mounted');
     }
 
@@ -47,9 +40,9 @@ class App extends Component {
                 <h1 id="heading">Kitten Friends</h1>
                 <SearchBox searchChange={this.onSearchChange} />
                 <Scroll>
-                    {/* <ErrorBoudry> */}
+                    <ErrorBoudry>
                         <CardList kittens={filteredKittens} />
-                    {/* </ErrorBoudry> */}
+                    </ErrorBoudry>
                 </Scroll>
             </div>
         );
