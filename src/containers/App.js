@@ -13,7 +13,7 @@ class App extends Component {
             searchField: '',
             isLoading: true
         }
-        // console.log('constructor');
+        console.log('constructor');
     }
 
     componentDidMount() {
@@ -21,9 +21,13 @@ class App extends Component {
             .then(response => { 
                 return response.json() })
             .then(users => { 
-                this.setState({ kittens: users, isLoading: false }) 
+                console.log(users)
+
+                return this.setState({ kittens: users, isLoading: false }
+                
+                    ) 
             });
-        // console.log('component mounted');
+        console.log('component mounted');
     }
 
     onSearchChange = (event) => {
@@ -31,7 +35,7 @@ class App extends Component {
     }
 
     render() {
-        // console.log('render');
+        console.log('render');
         const { kittens, searchField, isLoading } = this.state;
         const filteredKittens = kittens.filter(kitten => {
             return kitten.name.toLowerCase().includes(searchField.toLowerCase());
@@ -43,9 +47,9 @@ class App extends Component {
                 <h1 id="heading">Kitten Friends</h1>
                 <SearchBox searchChange={this.onSearchChange} />
                 <Scroll>
-                    <ErrorBoudry>
+                    {/* <ErrorBoudry> */}
                         <CardList kittens={filteredKittens} />
-                    </ErrorBoudry>
+                    {/* </ErrorBoudry> */}
                 </Scroll>
             </div>
         );
