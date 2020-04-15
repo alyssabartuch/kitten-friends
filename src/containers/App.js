@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import CardList from './CardList';
-import SearchBox from './SearchBox';
-import Scroll from './Scroll';
-// import { kittens } from './kittens';
+import CardList from '../components/CardList';
+import SearchBox from '../components/SearchBox';
+import Scroll from '../components/Scroll';
+import ErrorBoudry from '../components/ErrorBoundry';
 import './App.css';
 
 class App extends Component {
@@ -32,25 +32,23 @@ class App extends Component {
 
     render() {
         // console.log('render');
-        if (this.isLoading) {
-            return (
-                <h1 className="tc">Loading</h1>
-            );
-        } else {
-            const filteredKittens = this.state.kittens.filter(kitten => {
-                return kitten.name.toLowerCase().includes(this.state.searchField);
-            });
+        const { kittens, searchField, isLoading } = this.state;
+        const filteredKittens = kittens.filter(kitten => {
+            return kitten.name.toLowerCase().includes(searchField.toLowerCase());
+        });
 
-            return (
-                <div className="tc">
-                    <h1 id="heading">Kitten Friends</h1>
-                    <SearchBox searchChange={this.onSearchChange} />
-                    <Scroll>
+        return (isLoading) ?
+        <h1 className="tc">Loading...</h1> : (
+            <div className="tc">
+                <h1 id="heading">Kitten Friends</h1>
+                <SearchBox searchChange={this.onSearchChange} />
+                <Scroll>
+                    <ErrorBoudry>
                         <CardList kittens={filteredKittens} />
-                    </Scroll>
-                </div>
-            );
-        }
+                    </ErrorBoudry>
+                </Scroll>
+            </div>
+        );
     }  
 }
 
