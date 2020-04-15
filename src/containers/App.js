@@ -13,21 +13,21 @@ class App extends Component {
             searchField: '',
             isLoading: true
         }
-        console.log('constructor');
+        // console.log('constructor');
     }
 
     componentDidMount() {
-        fetch('https://jsonplaceholder.typicode.com/users')
+        fetch('http://jsonplaceholder.typicode.com/users')
             .then(response => { 
                 return response.json() })
             .then(users => { 
-                console.log(users)
+                // console.log(users)
 
                 return this.setState({ kittens: users, isLoading: false }
                 
                     ) 
             });
-        console.log('component mounted');
+        // console.log('component mounted');
     }
 
     onSearchChange = (event) => {
@@ -35,7 +35,7 @@ class App extends Component {
     }
 
     render() {
-        console.log('render');
+        // console.log('render');
         const { kittens, searchField, isLoading } = this.state;
         const filteredKittens = kittens.filter(kitten => {
             return kitten.name.toLowerCase().includes(searchField.toLowerCase());
